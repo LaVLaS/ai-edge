@@ -30,7 +30,7 @@ metadata:
   namespace: odh-core-acm
 spec:
   type: Git
-  pathname: 'https://github.com/opendatahub-io/ai-edge'
+  pathname: 'https://github.com/lavlas/ai-edge'
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta2
 kind: ManagedClusterSet
@@ -66,7 +66,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Subscription
 metadata:
   annotations:
-    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-branch: demo
     apps.open-cluster-management.io/git-path: acm/odh-core
     apps.open-cluster-management.io/reconcile-option: merge
   labels:
