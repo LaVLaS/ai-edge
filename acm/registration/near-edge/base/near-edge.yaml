@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: near-edge-acm-template
+  name: near-edge-acm
 ---
 apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   name: application
-  namespace: near-edge-acm-template
+  namespace: near-edge-acm
 spec:
   componentKinds:
   - group: apps.open-cluster-management.io
@@ -19,7 +19,7 @@ spec:
       - key: app
         operator: In
         values:
-          - near-edge-acm-template
+          - near-edge-acm
 ---
 apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
@@ -27,7 +27,7 @@ metadata:
   annotations:
     apps.open-cluster-management.io/reconcile-rate: medium
   name: channel
-  namespace: near-edge-acm-template
+  namespace: near-edge-acm
 spec:
   type: Git
   pathname: 'https://github.com/opendatahub-io/ai-edge'
@@ -36,9 +36,9 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   labels:
-    app: near-edge-acm-template
+    app: near-edge-acm
   name: placement
-  namespace: near-edge-acm-template
+  namespace: near-edge-acm
 spec:
   clusterSets:
     - poc-near-edge
@@ -54,7 +54,7 @@ metadata:
     apps.open-cluster-management.io/git-path: acm/odh-edge/apps/app
     apps.open-cluster-management.io/reconcile-option: merge
   labels:
-    app: near-edge-acm-template
+    app: near-edge-acm
   name: subscription
   namespace: bike-rental-app
 spec:
