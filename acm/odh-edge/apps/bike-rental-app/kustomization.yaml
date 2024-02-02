@@ -75,5 +75,5 @@ replacements:
 
 images:
 - name: edge-model-template-image
-  newName: quay.io/rhoai-edge/bike-rentals-auto-ml
-  digest: sha256:c4d68d1de1d90f52cb4053d0655496c3a677c55821db21492908a9584dd2e93b
+  newName: quay.io/llasmith/bike-rentals-auto-ml
+  digest: sha256:f4c0d10c60e598afc12dfb7119d1ef39902971e917c98ca8332a464eac56c7f3
