@@ -8,4 +8,4 @@ metadata:
     # than openshift-gitops, then update this label value to match.
     # More information:
     # https://docs.openshift.com/gitops/1.11/argocd_instance/setting-up-argocd-instance.html
-    #argocd.argoproj.io/managed-by: openshift-gitops
+    argocd.argoproj.io/managed-by: openshift-gitops
