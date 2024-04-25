@@ -24,6 +24,8 @@ RUN mkdir /models && chown ovms:ovms /models
 # the directory where we store the model and version
 COPY --chown=ovms:ovms $MODEL_DIR /models/$MODEL_NAME
 
+RUN date > /models/canary && cat /models/canary
+
 # Remove any TensorFlow fingerprint.pb file if found as it causes an error in OpenVino when multiple
 #   protobuf(.pb) files  are present in the model directory
 #   See https://www.tensorflow.org/guide/saved_model for info on the TensorFlow model format
