@@ -1,0 +1,9 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+resources:
+  - tektonhub/
+  - check-model-and-containerfile-exists.task.yaml
+  - copy-model-from-pvc.task.yaml
+  - kserve-download-model.task.yaml
+  - retrieve-build-image-info.task.yaml
+  - test-model-rest-svc.task.yaml

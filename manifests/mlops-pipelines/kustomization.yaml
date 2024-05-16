@@ -1,0 +1,12 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+labels:
+  - pairs:
+      app: odh-mlops
+      app.kubernetes.io/part-of: odh-mlops
+      app.opendatahub.io: odh-mlops
+
+resources:
+  - tasks/
+  - pipelines/
