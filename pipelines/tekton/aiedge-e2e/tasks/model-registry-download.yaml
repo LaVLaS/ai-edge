@@ -64,50 +64,50 @@ spec:
         "$(params.model-registry-hostname)/api/model_registry/v1alpha3/registered_models/$MODEL_ID/versions?" -H 'accept: application/json' | \
         jq -r --arg MODEL_VERSION "$(params.model-version)" '.items[] | select(.name == $MODEL_VERSION).id')
         
-        echo -n "MODEL ID is $MODEL_ID"
-        echo -n "MODEL VERSION ID is $MODEL_VERSION_ID"
+        echo "MODEL ID is $MODEL_ID"
+        echo "MODEL VERSION ID is $MODEL_VERSION_ID"
 
         if [[ ! -z "$MODEL_ID" ]]; then
-          echo -n "fetching parameters from model-registry"
+          echo "fetching parameters from model-registry"
 
           export FETCH_MODEL=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "fetch-model" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$FETCH_MODEL" | tee $(results.fetch-model.path)
+          echo "$FETCH_MODEL" | tee $(results.fetch-model.path)
 
           export GIT_MODEL_REPO=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "git-model-repo" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$GIT_MODEL_REPO" | tee $(results.git-model-repo.path)
+          echo "$GIT_MODEL_REPO" | tee $(results.git-model-repo.path)
 
           export GIT_MODEL_REVISION=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "git-model-revision" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$GIT_MODEL_REVISION" | tee $(results.git-model-revision.path)
+          echo "$GIT_MODEL_REVISION" | tee $(results.git-model-revision.path)
 
           export MODEL_DIR=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "model-dir" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$MODEL_DIR" | tee $(results.model-dir.path)
+          echo "$MODEL_DIR" | tee $(results.model-dir.path)
 
           export MODEL_RELATIVE_PATH=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "modelRelativePath" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$MODEL_RELATIVE_PATH" | tee $(results.modelRelativePath.path)
+          echo "$MODEL_RELATIVE_PATH" | tee $(results.modelRelativePath.path)
 
           export S3-BUCKET-NAME=$(curl --silent -X 'GET' \
           "$(params.model-registry-hostname)/api/model_registry/v1alpha3/model_versions/$MODEL_VERSION_ID" -H 'accept: application/json' | \
           jq -r --arg MODEL_PARAM "s3-bucket-name" '.customProperties[$MODEL_PARAM].string_value')
-          echo -n "$S3-BUCKET-NAME" | tee $(results.s3-bucket-name.path)
+          echo "$S3-BUCKET-NAME" | tee $(results.s3-bucket-name.path)
         fi
         else
-          echo -n "Using params from PipelineRun"
-          echo -n "$(params.fetch-model)" | tee $(results.fetch-model.path)
-          echo -n "$(params.git-model-repo)" | tee $(results.git-model-repo.path)
-          echo -n "$(params.git-model-revision)" | tee $(results.git-model-revision.path)
-          echo -n "$(params.model-dir)" | tee $(results.model-dir.path)
-          echo -n "$(params.modelRelativePath)" | tee $(results.modelRelativePath.path)
-          echo -n "$(params.s3-bucket-name)" | tee $(results.s3-bucket-name.path)
+          echo "Using params from PipelineRun"
+          echo "$(params.fetch-model)" | tee $(results.fetch-model.path)
+          echo "$(params.git-model-repo)" | tee $(results.git-model-repo.path)
+          echo "$(params.git-model-revision)" | tee $(results.git-model-revision.path)
+          echo "$(params.model-dir)" | tee $(results.model-dir.path)
+          echo "$(params.modelRelativePath)" | tee $(results.modelRelativePath.path)
+          echo "$(params.s3-bucket-name)" | tee $(results.s3-bucket-name.path)
       fi
   workspaces:
   - description: The workspace for the downloaded model uris.
