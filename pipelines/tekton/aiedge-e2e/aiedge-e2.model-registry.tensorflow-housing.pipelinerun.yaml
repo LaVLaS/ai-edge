@@ -16,6 +16,10 @@ spec:
     value: "modelregistry-sample-http-default.apps.srbiswas-cluster2.dev.datahub.redhat.com"
   - name: git-containerfile-repo
     value: https://github.com/opendatahub-io/ai-edge.git
+  - name: fetch-model
+    value: "" 
+  - name: modelRelativePath
+    value: ""
   - name: model-registry-enabled
     value: "true"
   - name: git-containerfile-revision
