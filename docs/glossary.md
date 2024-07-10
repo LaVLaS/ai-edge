@@ -1,41 +1,38 @@
 # AI Edge Terminology
 
-## Near Edge
-- Near edge typically refers to distributed deployments of “scaled-down” IT-like services to support business operations outside the core data centers and public cloud providers.[^1]. For the context, of RHOAI Edge use cases, these are OpenShift environments with additional restrictions for isolated networks and non-scalable resources.  These environment could be as small as Single Node OpenShift (SNO) environments or on-premise OpenShift clusters behind a customer
+## Core
 
-## Far Edge
-- These are resource constrained environments with unreliable, extremely restricted or non-existent network connectivity with hardware resource constraints that greatly affect the architecture of the software and services running in each environment. 
+- The central OpenShift cluster containing the tools responsible for creating any artifacts required for the successful deployment of an Inference Application to Near Edge environments.
+- There are no resources or network constraints expected in the core cluster as it is expected that it fully supports all workflows required for creating and verifying Inference Application container images.
+
+## Near Edge
+
+- This is a non-core distributed environment to run and serve AI/ML inference workloads in moderate yet constrained compute resources and network.
+- For the purpose of this repository, the near edge environment is represented by separate OpenShift clusters disconnected from the core, the internet or both but may be managed from a core OpenShift cluster.
 
 ## Model Server
-- A Model Server is responsible for hosting models as a service to "to return predictions based on data inputs that you provide through API calls."[^3]
+
+- A Model Server is responsible for hosting models as a service to "to return predictions based on data inputs that you provide through API calls."[^2]
 - For any workflows under opendatahub-io/ai-edge, we will be focusing on using the Model Servers and serving runtimes supported by Open Data Hub
 
-## Model Registry & Model Source
-- 
+## Inference Application Container
 
-## Inference Containers / Inference Service Container Image
-- Container images that package the model serving runtime together with the AI/ML model into a 
+- OCI compliant container image[^3] with the models included during the build process
+- Support for container images where the model and model serving runtimes are stored together
 
-## Edge Restrictions
+## Model Registry
 
-## Disconnected Environment
+- A centralized repository for the models and their metadata and managing the model lifecycle and versions.
 
-## Fleet Management
+## OCI Distribution Registry
 
-## Personas
+- Open Container Initiative (OCI) compliant container registry where the model and other artifacts are stored and versioned ready to be deployed on production or staging environments.
 
-### Data Scientist
+## GitOps
 
-### MLOps Engineer
+- GitOps is an established configuration management pattern to store the configuration of your infrastructure configuration and workflow automation in a Git repository for reproducibility and version control.
+- "GitOps uses Git repositories as a single source of truth to deliver infrastructure as code."[^1]
 
-### Cluster Admin
-
-### Infrastructure Admin
-
-## Pull Model
-
-## GitOps - "GitOps uses Git repositories as a single source of truth to deliver infrastructure as code."[^2]
-
-[^1]: https://www.redhat.com/en/blog/lets-level-set-at-the-edge "Let's Level Set at the Edge"
-[^2]: https://www.redhat.com/en/topics/devops/what-is-gitops "What is GitOps"
-[^3]: https://access.redhat.com/documentation/en-us/red_hat_openshift_ai_self-managed/2.8/html/serving_models/about-model-serving_about-model-serving "Red Hat OpenShift AI -> Serving models"
+[^1]: [What is GitOps](https://www.redhat.com/en/topics/devops/what-is-gitops)
+[^2]: [Red Hat OpenShift AI -> Serving models](https://access.redhat.com/documentation/en-us/red_hat_openshift_ai_self-managed/2.8/html/serving_models/about-model-serving_about-model-serving)
+[^3]: [Open Container Initiative](https://opencontainers.org/)
